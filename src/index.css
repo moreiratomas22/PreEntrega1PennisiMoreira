@@ -1,5 +1,25 @@
-body {background-color: grey; }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-.navItem{
-    text-align: center;
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+body {
+    background-color: grey;
 }
+
+.navItem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10%;
+    font-size: 18px;
+
+}
+
+.webHeader {
+    display: flex;
+    align-content: center;
+}
+
+/*header flex justify-between py-4 px-2 bg-slate-800 text-white */
