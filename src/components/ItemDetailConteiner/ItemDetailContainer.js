@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 
 const ItemDetailConteiner = () => {
   const [product, setProduct] = useState({});
+  const [loader, setLoader] = useState(true)
   const { pId } = useParams();
   console.log(pId);
 
@@ -18,10 +19,21 @@ const ItemDetailConteiner = () => {
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(()=> {
+        setLoader(false)
+      })
   }, []);
 
-  return <ItemDetail item={product} />;
-};
+  return (
+    <>
+    {!loader ? (
+      <ItemDetail item={product} /> 
+    ) : (
+      <h2>Cargandoooo......</h2>
+    )}
+    </>
+  )
+}
 
 export default ItemDetailConteiner;

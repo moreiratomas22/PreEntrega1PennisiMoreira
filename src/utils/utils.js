@@ -4,7 +4,7 @@ const products = [
     {id: "3", title: "producto 3", category:"Iphone", price: 900, img:"https://cdn.vox-cdn.com/thumbor/cPeVH-m_b9pScRXzpCBW-nAHSfw=/0x0:2032x1355/1400x1400/filters:focal(1016x678:1017x679)/cdn.vox-cdn.com/uploads/chorus_asset/file/22863258/akrales_210917_4760_0175.jpg" , stock: 1, description:""},
     {id: "4", title: "producto 4", category:"Iphone", price: 1500, img:"https://cdn.vox-cdn.com/thumbor/cPeVH-m_b9pScRXzpCBW-nAHSfw=/0x0:2032x1355/1400x1400/filters:focal(1016x678:1017x679)/cdn.vox-cdn.com/uploads/chorus_asset/file/22863258/akrales_210917_4760_0175.jpg" , stock: 8, description:""},
     {id: "5", title: "producto 5", category:"Motorola", price: 900, img:"https://cdn.vox-cdn.com/thumbor/cPeVH-m_b9pScRXzpCBW-nAHSfw=/0x0:2032x1355/1400x1400/filters:focal(1016x678:1017x679)/cdn.vox-cdn.com/uploads/chorus_asset/file/22863258/akrales_210917_4760_0175.jpg" , stock: 3, description:""},
-    {id: "6", title: "producto 6", category:"Iphone", price: 1500, img:"https://cdn.vox-cdn.com/thumbor/cPeVH-m_b9pScRXzpCBW-nAHSfw=/0x0:2032x1355/1400x1400/filters:focal(1016x678:1017x679)/cdn.vox-cdn.com/uploads/chorus_asset/file/22863258/akrales_210917_4760_0175.jpg" , stock: 2, description:""}
+    {id: "6", title: "Iphone 14 Pro Max 128gb", category:"Iphone", price: 1500, img:"https://cdn.vox-cdn.com/thumbor/cPeVH-m_b9pScRXzpCBW-nAHSfw=/0x0:2032x1355/1400x1400/filters:focal(1016x678:1017x679)/cdn.vox-cdn.com/uploads/chorus_asset/file/22863258/akrales_210917_4760_0175.jpg" , stock: 2, description:"Descripcion del Iphone 14 Pro Max. Modelo 2023"}
 ];
 
 export const myPromise = new Promise((resolve, rejected)=> {

@@ -1,10 +1,9 @@
-// import Navbar from './components';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import NavBar from "./components/NavBar";
 import Header from "./components/Header";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
 import ItemCount from "./components/itemCount/ItemCount";
 import ItemDetailConteiner from "./components/ItemDetailConteiner/ItemDetailContainer";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -16,11 +15,7 @@ function App() {
         <Route path="/category/:cId" element={ <ItemListContainer />}/>
       </Routes>
 
-      <ItemCount
-        initial={1}
-        stock={8}
-        onAdd={(quantity) => console.log("Cantidad agregada: ", quantity)}
-      />
+      <Footer />
     </BrowserRouter>
   );
 }
