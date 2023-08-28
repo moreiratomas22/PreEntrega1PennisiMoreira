@@ -1,17 +1,21 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ItemCount from "../itemCount/ItemCount";
 import { Link } from "react-router-dom";
 import CustomButton from "../CustomButton/CustomButton";
 import "./ItemDetail.css"
+import { CartContext } from "../CartContext/CartContext";
 
 
 
 const ItemDetail = ({ item }) => {
   const [added, setAdded] = useState(0);
+  const {addToCart} = useContext(CartContext)
 
   const onAdd = (qty) => {
     setAdded(qty);
+    addToCart(item ,qty)
   };
+
 
   return (
     <section className="w-full">
