@@ -18,8 +18,8 @@ function App() {
         <Route path="/cart" element={<CartContainer />} />
       </Routes>
 
-      <Footer />
     </CartProvider>
+    <Footer />
     </BrowserRouter>
   );
 }

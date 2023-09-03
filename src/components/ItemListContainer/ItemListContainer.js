@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import {myPromise} from "../../utils/utils"
 import ItemList from "../ItemList/ItemList";
 import { useParams } from "react-router-dom";
+import Loader from "../Loader/Loader";
 
 const ItemListContainer = ({greeting}) => {
 
     const [products, setProducts] = useState([])
+    const [loader, setLoader] = useState(true)
     const { cId } = useParams()
 
     useEffect(()=>{
@@ -20,13 +22,20 @@ const ItemListContainer = ({greeting}) => {
         .catch((err) => {
             console.log(err)
         })
+        .finally(()=>{
+            setLoader(false)
+        })
     },[cId])
     
     
     return (
         <>
             <h2>{greeting}</h2>
-            <ItemList items={products}/>
+            {loader ? (
+                <Loader />
+            ) : (
+                <ItemList items={products}/>
+            )}
         </>
     )
 }

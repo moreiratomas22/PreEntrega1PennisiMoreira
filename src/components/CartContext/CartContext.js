@@ -1,11 +1,11 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 export const CartContext = createContext()
 const Provider = CartContext.Provider
 
 const CartProvider = (props) => {
 
-    const cart = []
+    const [cart, setCart] = useState([])
 
     const addToCart = (item, quantity) => {
         const newItem = {
@@ -13,21 +13,40 @@ const CartProvider = (props) => {
             price: item.price,
             quantity: quantity,
         }
-        const validarItemEnArreglo = () => {
-            const index = cart.findIndex(item => item.title === newItem.title)
+
+        const index = cart.findIndex(item => item.title === newItem.title)
+        const isInCart = () => {
             return index !== -1
         }
-        if (validarItemEnArreglo()) {
-            const itemFiltrado = cart.find(item => item.title === newItem.title)
-            itemFiltrado.quantity += newItem.quantity
+        if (isInCart()) {
+            const array = [...cart]
+            array[index].quantity += quantity
+            setCart(array)
         } else {
-            cart.push(newItem)
+            setCart([...cart, newItem])
         }
+    }
+
+    const deleteItemCart = (item) => {
+        const index = cart.findIndex(searchItem => searchItem.title === item.title)
+        const array = [...cart]
+        array.splice(index, 1)
+        setCart(array)
+    }
+
+    const totalCalc = () => {
+        let acum = 0
+        cart.map(item => acum += item.price * item.quantity)
+        return acum
+    }
+
+    const clearCart = () => {
+        setCart([])
     }
     
 
     return (
-        <Provider value={{cart, addToCart}}>
+        <Provider value={{cart, addToCart, deleteItemCart, totalCalc, clearCart}}>
             {props.children}
         </Provider>
     )

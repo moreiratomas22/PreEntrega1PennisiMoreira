@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ItemDetail from "../itemDetail/ItemDetail";
 import { myPromise } from "../../utils/utils";
 import { useParams } from "react-router-dom";
+import Loader from "../Loader/Loader"
 
 const ItemDetailConteiner = () => {
   const [product, setProduct] = useState({});
@@ -28,7 +29,7 @@ const ItemDetailConteiner = () => {
     {!loader ? (
       <ItemDetail item={product} /> 
     ) : (
-      <h2>Cargandoooo......</h2>
+      <Loader />
     )}
     </>
   )

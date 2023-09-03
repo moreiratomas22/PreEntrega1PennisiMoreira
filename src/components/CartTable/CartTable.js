@@ -1,4 +1,10 @@
-const CartTable = () => {
+import { useContext } from "react"
+import { CartContext } from "../CartContext/CartContext"
+
+const CartTable = ({cart}) => {
+
+    const {totalCalc, deleteItemCart, clearCart} = useContext(CartContext)
+
     return(
         <table>
             <tbody>
@@ -11,39 +17,26 @@ const CartTable = () => {
                 <th> </th>
             </tr>
 
-            <tr>
-                <td>Producto 1</td>
-                <td>250</td>
-                <td>4</td>
-                <td>1000</td>
-            </tr>
+            {cart.map((item,index) => {
+                return (
+                    <tr key={index}>
+                        <td>{item.title}</td>
+                        <td>$ {item.price}</td>
+                        <td>{item.quantity}</td>
+                        <td>{item.price * item.quantity}</td>
+                        <td onClick={()=>deleteItemCart(item)}>Eliminar</td>
+                    </tr>
+                )
+            })}
 
-            <tr>
-                <td>Producto 1</td>
-                <td>250</td>
-                <td>4</td>
-                <td>1000</td>
-            </tr>
-
-            <tr>
-                <td>Producto 1</td>
-                <td>250</td>
-                <td>4</td>
-                <td>1000</td>
-            </tr>
-
-            <tr>
-                <td>Producto 1</td>
-                <td>250</td>
-                <td>4</td>
-                <td>1000</td>
-            </tr>
+    
 
             <tr>
                 <td></td>
                 <td></td>
                 <td></td>
-                <th>TOTAL: $4000</th>
+                <th>TOTAL: $ {totalCalc()}</th>
+                <th onClick={clearCart}>Limpiar carrito</th>
             </tr>
             </tbody>
         </table>
