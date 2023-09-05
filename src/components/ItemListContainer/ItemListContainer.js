@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {myPromise} from "../../utils/utils"
+import {getProducts} from "../../utils/utils"
 import ItemList from "../ItemList/ItemList";
 import { useParams } from "react-router-dom";
 import Loader from "../Loader/Loader";
@@ -11,13 +11,19 @@ const ItemListContainer = ({greeting}) => {
     const { cId } = useParams()
 
     useEffect(()=>{
-        myPromise
+        getProducts
         .then((data) => {
+            const products = data.docs.map((doc) => {
+                return {
+                    ...doc.data(),
+                    id: doc.id
+                }
+            })
             if (cId) {
-                const filteredProducts = data.filter(prod => prod.category === cId)
+                const filteredProducts = products.filter(prod => prod.category === cId)
                 return setProducts(filteredProducts)
             }
-            setProducts(data)
+            setProducts(products)
         })
         .catch((err) => {
             console.log(err)

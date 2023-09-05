@@ -5,6 +5,8 @@ import ItemDetailConteiner from "./components/ItemDetailConteiner/ItemDetailCont
 import Footer from "./components/Footer";
 import CartContainer from "./components/CartContainer/CartContainer";
 import CartProvider from "./components/CartContext/CartContext";
+import "./utils/firebase"
+
 
 function App() {
   return (

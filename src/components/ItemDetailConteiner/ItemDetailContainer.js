@@ -1,38 +1,29 @@
 import React, { useEffect, useState } from "react";
 import ItemDetail from "../itemDetail/ItemDetail";
-import { myPromise } from "../../utils/utils";
+import { getProduct } from "../../utils/utils";
 import { useParams } from "react-router-dom";
-import Loader from "../Loader/Loader"
+import Loader from "../Loader/Loader";
 
 const ItemDetailConteiner = () => {
   const [product, setProduct] = useState({});
-  const [loader, setLoader] = useState(true)
+  const [loader, setLoader] = useState(true);
   const { pId } = useParams();
 
   useEffect(() => {
-    myPromise
+    getProduct(pId)
       .then((data) => {
-        const products = data;
-        const myProduct = products.find((prod) => prod.id === pId);
-        setProduct(myProduct);
+        const products = data.data();
+        setProduct(products);
       })
       .catch((err) => {
         console.log(err);
       })
-      .finally(()=> {
-        setLoader(false)
-      })
-  },[pId]);
+      .finally(() => {
+        setLoader(false);
+      });
+  }, [pId]);
 
-  return (
-    <>
-    {!loader ? (
-      <ItemDetail item={product} /> 
-    ) : (
-      <Loader />
-    )}
-    </>
-  )
-}
+  return <>{!loader ? <ItemDetail item={product} /> : <Loader />}</>;
+};
 
 export default ItemDetailConteiner;
