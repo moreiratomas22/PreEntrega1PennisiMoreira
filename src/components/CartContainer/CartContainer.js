@@ -9,7 +9,7 @@ const CartContainer = () => {
     const cartLength = cart.length
     return (
         <>
-        {(cartLength > 0) ? (<CartTable cart={cart}/>) : (<p>No hay productos agregados <Link to="/" className="border-solid border-2 rounded-full border-white">Volver al Inicio</Link> </p>)}
+        {(cartLength > 0) ? (<CartTable cart={cart}/>) : (<p className="text-center my-48">Aùn no hay productos agregados <Link to="/" className="border-solid border-2 rounded-full border-white">Volver al Inicio</Link> </p>)}
         </>
         
     )

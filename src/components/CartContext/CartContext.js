@@ -4,7 +4,13 @@ export const CartContext = createContext();
 const Provider = CartContext.Provider;
 
 const CartProvider = (props) => {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")) || []);
+
+  const saveLocalCart = (cart) => {
+    const plainCart = JSON.stringify(cart)
+    localStorage.setItem("cart", plainCart)
+    setCart(cart)
+  }
 
   const addToCart = (item, quantity) => {
     const newItem = {
@@ -20,9 +26,9 @@ const CartProvider = (props) => {
     if (isInCart()) {
       const array = [...cart];
       array[index].quantity += quantity;
-      setCart(array);
+      saveLocalCart(array)
     } else {
-      setCart([...cart, newItem]);
+      saveLocalCart([...cart, newItem])
     }
   };
 
@@ -32,7 +38,7 @@ const CartProvider = (props) => {
     );
     const array = [...cart];
     array.splice(index, 1);
-    setCart(array);
+    saveLocalCart(array);
   };
 
   const totalCalc = () => {
@@ -42,8 +48,17 @@ const CartProvider = (props) => {
   };
 
   const clearCart = () => {
-    setCart([]);
+    saveLocalCart([]);
   };
+
+  // const finishSheep = () => {
+  //   totalCalc()
+  //   cartTicket <- generateTicket(cart)
+  //   guardatlo en una collection en firestore
+  //   Obtener el ID de la compra y mostrarlo en pantalla haciendo una consulta a firebase
+  //   updateCloudStock()
+  //   clearCart()
+  // };
 
   return (
     <Provider value={{ cart, addToCart, deleteItemCart, totalCalc, clearCart }}>

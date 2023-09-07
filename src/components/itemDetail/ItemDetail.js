@@ -9,7 +9,10 @@ import { CartContext } from "../CartContext/CartContext";
 
 const ItemDetail = ({ item }) => {
   const [added, setAdded] = useState(0);
-  const {addToCart} = useContext(CartContext)
+  const {addToCart, cart} = useContext(CartContext)
+
+  const itemCart = cart.find(product => product.title === item.title) || null
+  const itemCartQuantity = itemCart?.quantity || 0
 
   const onAdd = (qty) => {
     setAdded(qty);
@@ -19,7 +22,7 @@ const ItemDetail = ({ item }) => {
 
   return (
     <section className="w-full">
-      <div className="p-4 flex flex-row justify-between items-start m-auto lg:h-auto lg:w-6/12 bg-white rounded-b lg:rounded-b-none lg:rounded-r leading-normal">
+      <div className="my-12 m-auto p-4 flex flex-row justify-between items-start m-auto lg:h-auto lg:w-6/12 bg-white rounded-b lg:rounded-b-none lg:rounded-r leading-normal">
         <div className="w-2/5 imgContainer">
           <img src={item.img} className="tamanoImg" alt="" />
         </div>
@@ -46,7 +49,11 @@ const ItemDetail = ({ item }) => {
                 </Link>
               </>
             ) : (
-              <ItemCount initial={1} stock={item.stock} onAdd={onAdd} />
+              (item.stock - itemCartQuantity <= 0) ? (
+                  <p>Ya has agregado todo el stock</p>
+                ) : (
+                  <ItemCount initial={1} stock={item.stock - itemCartQuantity} onAdd={onAdd} /> 
+              )
             )}
           </div>
         </div>

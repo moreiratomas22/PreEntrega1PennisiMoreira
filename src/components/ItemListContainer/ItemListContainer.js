@@ -37,6 +37,10 @@ const ItemListContainer = ({greeting}) => {
     return (
         <>
             {/* <h2>{greeting}</h2> */}
+
+            <h2 className="webHeader text-bold font-serif text-4xl my-5">
+      Bienvenidos a la tienda On-Line de TU-FONO store
+    </h2>
             {loader ? (
                 <Loader />
             ) : (
