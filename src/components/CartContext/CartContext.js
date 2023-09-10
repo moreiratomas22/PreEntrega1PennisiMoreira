@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import { generateTicket, updateProductStock, validateStock } from "../../utils/utils";
 
 export const CartContext = createContext();
 const Provider = CartContext.Provider;
@@ -12,8 +13,9 @@ const CartProvider = (props) => {
     setCart(cart)
   }
 
-  const addToCart = (item, quantity) => {
+  const addToCart = (id, item, quantity) => {
     const newItem = {
+      id: id,
       title: item.title,
       price: item.price,
       quantity: quantity,
@@ -51,17 +53,18 @@ const CartProvider = (props) => {
     saveLocalCart([]);
   };
 
-  // const finishSheep = () => {
-  //   totalCalc()
-  //   cartTicket <- generateTicket(cart)
-  //   guardatlo en una collection en firestore
-  //   Obtener el ID de la compra y mostrarlo en pantalla haciendo una consulta a firebase
-  //   updateCloudStock()
-  //   clearCart()
-  // };
+   const completePurchase = async (cart, total) => {
+      if (! await validateStock(cart)) return
+      const ticketId = await generateTicket(cart, total)
+      console.log("ticketId:",ticketId)
+      cart.map(product => {
+        return updateProductStock(product.id, product.quantity)
+      })
+      return ticketId
+   };
 
   return (
-    <Provider value={{ cart, addToCart, deleteItemCart, totalCalc, clearCart }}>
+    <Provider value={{ cart, addToCart, deleteItemCart, totalCalc, clearCart, completePurchase }}>
       {props.children}
     </Provider>
   );

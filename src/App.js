@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import CartContainer from "./components/CartContainer/CartContainer";
 import CartProvider from "./components/CartContext/CartContext";
 import "./utils/firebase"
+import PurchasedCart from "./components/PurchasedCart/PurchasedCart";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/item/:pId" element={ <ItemDetailConteiner />}/>
         <Route path="/category/:cId" element={ <ItemListContainer />}/>
         <Route path="/cart" element={<CartContainer />} />
+        <Route path="/purchase/:ticketId" element={<PurchasedCart />} />
       </Routes>
 
     </CartProvider>

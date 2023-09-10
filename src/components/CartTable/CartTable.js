@@ -1,10 +1,37 @@
 import { useContext } from "react";
 import { CartContext } from "../CartContext/CartContext";
+import Swal from "sweetalert2";
 
 const CartTable = ({ cart }) => {
-  const { totalCalc, deleteItemCart, clearCart } = useContext(CartContext);
+  const { totalCalc, deleteItemCart, clearCart, completePurchase } = useContext(CartContext);
+
+  const handleButton = async () => {
+    const ticketId = await completePurchase(cart, totalCalc(cart))
+    if (ticketId) {
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Compra realizada con éxito!, el ID de su ticket es:',
+        text: ticketId,
+        showConfirmButton: true
+      })
+      .then(()=>{
+        clearCart()
+      })
+     } else {
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: "No se ha podido finalizar su compra",
+        text: "Falta stock de uno o más productos",
+        showConfirmButton: true,
+      })
+     }
+  }
 
   return (
+    <div>
+
     <table className="w-2/3 mx-auto my-12">
       <tbody>
         <tr className="">
@@ -38,6 +65,8 @@ const CartTable = ({ cart }) => {
         </tr>
       </tbody>
     </table>
+      <button onClick={handleButton}>Terminar compra</button>
+    </div>
   );
 };
 

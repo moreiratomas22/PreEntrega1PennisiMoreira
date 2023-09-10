@@ -1,53 +1,47 @@
 import React, { useEffect, useState } from "react";
-import {getProducts} from "../../utils/utils"
+import { getProducts } from "../../utils/utils";
 import ItemList from "../ItemList/ItemList";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Loader from "../Loader/Loader";
+import TinyButton from "../CustomButton/TinyButton";
 
-const ItemListContainer = ({greeting}) => {
+const ItemListContainer = ({ greeting }) => {
+  const [products, setProducts] = useState([]);
+  const [inputTicketId, setInputTicketId] = useState("")
+  const [loader, setLoader] = useState(true);
+  const { cId } = useParams();
 
-    const [products, setProducts] = useState([])
-    const [loader, setLoader] = useState(true)
-    const { cId } = useParams()
+  useEffect(() => {
+    getProducts(cId)
+      .then((data) => {
+        const products = data.docs.map((doc) => {
+          return {
+            ...doc.data(),
+            id: doc.id,
+          };
+        });
+        setProducts(products);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setLoader(false);
+      });
+  }, [cId]);
 
-    useEffect(()=>{
-        getProducts
-        .then((data) => {
-            const products = data.docs.map((doc) => {
-                return {
-                    ...doc.data(),
-                    id: doc.id
-                }
-            })
-            if (cId) {
-                const filteredProducts = products.filter(prod => prod.category === cId)
-                return setProducts(filteredProducts)
-            }
-            setProducts(products)
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-        .finally(()=>{
-            setLoader(false)
-        })
-    },[cId])
-    
-    
-    return (
-        <>
-            {/* <h2>{greeting}</h2> */}
+  return (
+    <>
+      <h2 className="webHeader text-bold font-serif text-4xl my-5">
+        Bienvenidos a la tienda On-Line de TUFONO store
+      </h2>
+      {loader ? <Loader /> : <ItemList items={products} />}
+      <div className="flex m-10 items-end justify-end">
+          <input onChange={(e)=>setInputTicketId(e.target.value)} id="ticketId" type="text" placeholder="Inserte ID de su compra" className="rounded border-2 border-black"/>
+          <Link to={"/purchase/" + inputTicketId}><TinyButton pmt="Consultar"/></Link>
+      </div>
+    </>
+  );
+};
 
-            <h2 className="webHeader text-bold font-serif text-4xl my-5">
-      Bienvenidos a la tienda On-Line de TU-FONO store
-    </h2>
-            {loader ? (
-                <Loader />
-            ) : (
-                <ItemList items={products}/>
-            )}
-        </>
-    )
-}
-
-export default ItemListContainer
+export default ItemListContainer;

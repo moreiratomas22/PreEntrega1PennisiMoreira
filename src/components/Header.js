@@ -7,7 +7,7 @@ const Header = () => {
 
     <NavBar />
     {/* <h2 className="webHeader text-bold font-serif text-4xl my-5">
-      Bienvenidos a la tienda On-Line de TU-FONO store
+      Bienvenidos a la tienda On-Line de TUFONO store
     </h2> */}
 
     </header>

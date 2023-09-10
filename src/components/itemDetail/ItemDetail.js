@@ -4,10 +4,11 @@ import { Link } from "react-router-dom";
 import CustomButton from "../CustomButton/CustomButton";
 import "./ItemDetail.css"
 import { CartContext } from "../CartContext/CartContext";
+import TinyButton from "../CustomButton/TinyButton";
 
 
 
-const ItemDetail = ({ item }) => {
+const ItemDetail = ({ pId, item }) => {
   const [added, setAdded] = useState(0);
   const {addToCart, cart} = useContext(CartContext)
 
@@ -16,7 +17,7 @@ const ItemDetail = ({ item }) => {
 
   const onAdd = (qty) => {
     setAdded(qty);
-    addToCart(item ,qty)
+    addToCart(pId, item, qty)
   };
 
 
@@ -44,9 +45,17 @@ const ItemDetail = ({ item }) => {
                   carrito!
                 </p>
                 <br />
-                <Link to="/cart">
-                  <CustomButton pmt="Finalizar Compra" />
+                <div className="flex gap-6 justify-center">
+                <Link to="/">
+                  <CustomButton pmt="Seguir comprando" />
                 </Link>
+                <Link to="/cart" >
+                  <TinyButton pmt="Ver carrito" />
+                </Link>
+                </div>
+                <div className="absolute bottom-0 right-0 m-4">
+
+                </div>
               </>
             ) : (
               (item.stock - itemCartQuantity <= 0) ? (

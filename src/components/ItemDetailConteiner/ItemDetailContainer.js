@@ -23,7 +23,7 @@ const ItemDetailConteiner = () => {
       });
   }, [pId]);
 
-  return <>{!loader ? <ItemDetail item={product} /> : <Loader />}</>;
+  return <>{!loader ? <ItemDetail pId={pId} item={product} /> : <Loader />}</>;
 };
 
 export default ItemDetailConteiner;
