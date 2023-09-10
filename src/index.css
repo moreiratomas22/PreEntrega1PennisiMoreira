@@ -11,6 +11,9 @@
     flex-direction: column;
     position: relative;
 }
+.active {
+    border-bottom: 1px solid #fff;
+}
 
 .navItem {
     display: flex;

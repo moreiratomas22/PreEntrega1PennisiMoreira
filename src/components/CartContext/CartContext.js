@@ -53,9 +53,9 @@ const CartProvider = (props) => {
     saveLocalCart([]);
   };
 
-   const completePurchase = async (cart, total) => {
+   const completePurchase = async (cart, total, user) => {
       if (! await validateStock(cart)) return
-      const ticketId = await generateTicket(cart, total)
+      const ticketId = await generateTicket(cart, total, user)
       console.log("ticketId:",ticketId)
       cart.map(product => {
         return updateProductStock(product.id, product.quantity)

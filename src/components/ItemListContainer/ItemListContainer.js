@@ -35,7 +35,16 @@ const ItemListContainer = ({ greeting }) => {
       <h2 className="webHeader text-bold font-serif text-4xl my-5">
         Bienvenidos a la tienda On-Line de TUFONO store
       </h2>
-      {loader ? <Loader /> : <ItemList items={products} />}
+      {loader ? (
+      <Loader />
+      ) : (
+        products.length > 0 ? ( 
+          <ItemList items={products} />
+
+        ) : ( 
+          <h2>No se encontro la categoria solicitada</h2>
+        )
+      )}
       <div className="flex m-10 items-end justify-end">
           <input onChange={(e)=>setInputTicketId(e.target.value)} id="ticketId" type="text" placeholder="Inserte ID de su compra" className="rounded border-2 border-black"/>
           <Link to={"/purchase/" + inputTicketId}><TinyButton pmt="Consultar"/></Link>

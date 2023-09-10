@@ -12,8 +12,8 @@ const ItemDetailConteiner = () => {
   useEffect(() => {
     getProduct(pId)
       .then((data) => {
-        const products = data.data();
-        setProduct(products);
+        const product = data.data();
+        setProduct(product);
       })
       .catch((err) => {
         console.log(err);
@@ -23,7 +23,16 @@ const ItemDetailConteiner = () => {
       });
   }, [pId]);
 
-  return <>{!loader ? <ItemDetail pId={pId} item={product} /> : <Loader />}</>;
+  return <>{
+    !loader ? (
+      product ? (
+        <ItemDetail pId={pId} item={product} />
+      ) : (
+        <h2>No se encontro el item solicitado</h2>
+      )
+    ) : (
+    <Loader />
+    )}</>;
 };
 
 export default ItemDetailConteiner;

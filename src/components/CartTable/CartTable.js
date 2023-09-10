@@ -1,12 +1,13 @@
 import { useContext } from "react";
 import { CartContext } from "../CartContext/CartContext";
 import Swal from "sweetalert2";
+import BuyerForm from "../BuyerForm/BuyerForm";
 
 const CartTable = ({ cart }) => {
   const { totalCalc, deleteItemCart, clearCart, completePurchase } = useContext(CartContext);
 
-  const handleButton = async () => {
-    const ticketId = await completePurchase(cart, totalCalc(cart))
+  const handleButton = async (user) => {
+    const ticketId = await completePurchase(cart, totalCalc(cart), user)
     if (ticketId) {
       Swal.fire({
         position: 'center',
@@ -65,7 +66,7 @@ const CartTable = ({ cart }) => {
         </tr>
       </tbody>
     </table>
-      <button onClick={handleButton}>Terminar compra</button>
+        <BuyerForm handleButton={handleButton} />
     </div>
   );
 };

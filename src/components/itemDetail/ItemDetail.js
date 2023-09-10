@@ -59,7 +59,7 @@ const ItemDetail = ({ pId, item }) => {
               </>
             ) : (
               (item.stock - itemCartQuantity <= 0) ? (
-                  <p>Ya has agregado todo el stock</p>
+                  <p>No hay mas stock</p>
                 ) : (
                   <ItemCount initial={1} stock={item.stock - itemCartQuantity} onAdd={onAdd} /> 
               )

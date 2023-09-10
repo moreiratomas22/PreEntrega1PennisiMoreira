@@ -30,11 +30,13 @@ export const getProduct = (id) => {
   });
 };
 
-export const generateTicket = async (cart, total) => {
+export const generateTicket = async (cart, total, user) => {
+  console.log("user", user)
   const ticket = await addDoc(collection(db, "ticket"), {
     cart: cart,
     total: total,
     date: Date().toString(),
+    user: user
   });
   return ticket.id;
 };

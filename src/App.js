@@ -8,7 +8,6 @@ import CartProvider from "./components/CartContext/CartContext";
 import "./utils/firebase"
 import PurchasedCart from "./components/PurchasedCart/PurchasedCart";
 
-
 function App() {
   return (
     <BrowserRouter>
