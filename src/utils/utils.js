@@ -70,7 +70,3 @@ export const getTicket = (ticketId) => {
     rej((err) => console.log(err));
   });
 }
-
-//funcion getTicket(ticketId generado automaticamente por firestore) esto trae el ticket con todas las compras realizadas
-
-//Iniciar sesion, crear una collection usuarios que can a tener sus tickets almacenados y una lista de deseados

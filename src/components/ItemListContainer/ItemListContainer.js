@@ -32,7 +32,7 @@ const ItemListContainer = ({ greeting }) => {
 
   return (
     <>
-      <h2 className="webHeader text-bold font-serif text-4xl my-5">
+      <h2 className=" align-center justify-center h-8 items-center flex text-bold font-serif text-3xl my-5">
         Bienvenidos a la tienda On-Line de TUFONO store
       </h2>
       {loader ? (

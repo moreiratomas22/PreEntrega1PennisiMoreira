@@ -14,7 +14,7 @@ const CartTable = ({ cart }) => {
       Swal.fire({
         position: "center",
         icon: "success",
-        title: "Compra realizada con éxito!, el ID de su ticket es:",
+        title: "Compra realizada con éxito! el ID de su ticket es:",
         text: ticketId,
         showConfirmButton: true,
       }).then(() => {
