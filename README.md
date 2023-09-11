@@ -14,6 +14,7 @@ Una vez en tu carrito, verás la descripción de tu pedido: Los productos, los p
 <!-- // Reversion del README -->
 
 Uno se encuentra en una primera instancia con el listado de TODOS los equipos que tenemos. Se los puede filtrar desde la barra de navegación por categoria, traidas directamente desde FireStore. Asimismo, en la barra podemos encontrar el Logo de la empresa (el cual te devuelve siempre que uno desee al brand principal), y el ícono del carro de compras. Dicho ícono, no sólo te direcciona a tu propio carrito, sino que muestra EN VIVO la cantidad de productos que uno ha ido agregando a su compra.
+La barar de navegación subraya en QUÉ seccion estas parado, ya sea una categoria, o el carro de compras. Si el usuario esta en la página principal, no se subraya nada.
 <!-- AGREGAR ALGUNA ESPECIFICACION DE LAS RUTAS? DE COMO SE RENDERIZA EL COMPONENTE  Y NO TODA LA WEB-->
 Con respecto a las RUTAS, se muestran en el buscador por categoria, item, por seccion (cart, pucharse)
 <!-- FIN -->
