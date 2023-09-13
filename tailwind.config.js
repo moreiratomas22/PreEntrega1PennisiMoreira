@@ -7,7 +7,8 @@ module.exports = {
         'barraNav' : '#415a77',
         'fondoBody' : '#747578',
         'botonesTurq' : '#1b263b',
-        'hoverButton' : '#778da9'
+        'hoverButton' : '#778da9',
+        'colorH2' : '#0d1b2a' 
       }
     },
   },

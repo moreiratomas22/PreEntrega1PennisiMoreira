@@ -14,7 +14,7 @@ function App() {
     <CartProvider>
       <Header />
       <Routes>
-        <Route path="/" element={<ItemListContainer greeting={"Este es el saludo! desde mi App.js"} />}/>
+        <Route path="/" element={<ItemListContainer />}/>
         <Route path="/item/:pId" element={ <ItemDetailConteiner />}/>
         <Route path="/category/:cId" element={ <ItemListContainer />}/>
         <Route path="/cart" element={<CartContainer />} />
