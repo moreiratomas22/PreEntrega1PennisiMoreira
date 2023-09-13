@@ -4,6 +4,7 @@ import ItemList from "../ItemList/ItemList";
 import { useParams, Link } from "react-router-dom";
 import Loader from "../Loader/Loader";
 import TinyButton from "../CustomButton/TinyButton";
+import "./ItemListContainer.css"
 
 const ItemListContainer = () => {
   const [products, setProducts] = useState([]);
@@ -32,7 +33,7 @@ const ItemListContainer = () => {
 
   return (
     <>
-      <h2 className=" align-center colorH2 justify-center h-8 items-center flex text-bold font-serif text-3xl my-5">
+      <h2 className="font-serif align-center colorH2 justify-center h-8 items-center flex text-bold font-serif text-3xl my-5">
         Bienvenidos a la tienda On-Line de TUFONO store
       </h2>
       {loader ? (
